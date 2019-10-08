@@ -1,12 +1,12 @@
 [![GoDoc](https://godoc.org/github.com/golobby/env?status.svg)](https://godoc.org/github.com/golobby/env)
 [![Build Status](https://travis-ci.org/golobby/env.svg?branch=master)](https://travis-ci.org/golobby/env)
 [![Go Report Card](https://goreportcard.com/badge/github.com/golobby/env)](https://goreportcard.com/report/github.com/golobby/env)
-[![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.svg?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.png?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
 
 # Env
-Env is a simple package to read environment variable files and load them to the OS variables. 
+Env is a simple package to read environment variable files and load them into the OS variables. 
 It parses env files and returns their key/values as a `map[string]string`. 
-It also loads or overloads them into the operating system.
+It also loads or overloads them into the OS variables.
 
 ## Documentation
 
@@ -22,14 +22,16 @@ go get github.com/golobby/env
 
 ### Loading
 
-Following example demonstrates how to load env file.
+Following example demonstrates how to read and load a env file.
 
 ```go
 vs, err := env.Load(".env")
 fmt.Println(vs)
 ```
 
-`vs` will be a `map[string]string]` of the environment variables. It also loads the variables to OS.
+The filename you pass to `Load()` function must be env file relative path like `.env` or `path/to/.env`.
+`vs` variable in the example will be a `map[string]string]` of the environment variables. 
+It also loads the variables to OS variables.
 
 #### Example
 
@@ -53,14 +55,20 @@ fmt.Println(os.Getenv("APP_PORT")) // 8585
 
 ### Overloading
 
-The function `Load()` will load the variables to the operating system, it ignores the variables that have already 
-existed in the operating system.
+The function `Load()` will load the variables into the operating system, it ignores the variables that have already 
+existed in the OS variables.
 
-There is another function named `Overload()`. It's so similar to the `Load()` function but it overwrites the operating 
-system variables.
+There is another function named `Overload()`. It's so similar to the `Load()` function but the difference is that 
+it overwrites the OS variables.
+
+The example below shows how it change the OS variables.
 
 ```go
+err := os.Setenv("APP_NAME", "TheOldName")
+fmt.Println(os.Getenv("APP_NAME")) // TheOldName
+
 vs, err := env.Overload(".env")
+fmt.Println(os.Getenv("APP_NAME")) // MyGoApp
 ```
 
 ### Syntax
