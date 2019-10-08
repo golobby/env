@@ -1,4 +1,4 @@
-// Package Env is a simple package to read environment variable files and load them into the OS variables.
+// Package env is a simple package to read environment variable files and load them into the OS variables.
 // It parses env files and returns their key/values as a string map.
 // It also loads or overloads them into the OS variables.
 package env
