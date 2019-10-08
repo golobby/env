@@ -5,7 +5,7 @@
 
 # Env
 Env is a simple package to read and load environment variable files. 
-It parses env files and returns their key/values in as a map. 
+It parses env files and returns their key/values as a map. 
 It also loads or overloads them into the operating system.
 
 ## Documentation

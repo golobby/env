@@ -1,3 +1,6 @@
+// Package env is a simple package to read and load environment variable files.
+// It parses env files and returns their key/values as a map.
+// It also loads or overloads them into the operating system.
 package env
 
 import (
@@ -7,14 +10,19 @@ import (
 	"strings"
 )
 
+// Load will read the given env file and return its variables as a map and load them into the operating system.
+// It won't overwrite the existing variables in the OS.
 func Load(filename string) (map[string]string, error) {
 	return load(filename, false)
 }
 
+// Load will read the given env file and return its variables as a map and load them into the operating system.
+// It will overwrite the existing variables in the OS.
 func Overload(filename string) (map[string]string, error) {
 	return load(filename, true)
 }
 
+// Load will read the given env file and return its variables as a map and load them into the operating system.
 func load(filename string, overwrite bool) (map[string]string, error) {
 	wd, err := os.Getwd()
 	if err != nil {
@@ -46,6 +54,7 @@ func load(filename string, overwrite bool) (map[string]string, error) {
 	return variables, nil
 }
 
+// read will return the file file content as a map
 func read(file *os.File) (map[string]string, error) {
 	e := map[string]string{}
 	scanner := bufio.NewScanner(file)
@@ -65,6 +74,7 @@ func read(file *os.File) (map[string]string, error) {
 	return e, nil
 }
 
+// parse will extract key/value from the given line
 func parse(line string) (string, string, error) {
 	ln := strings.TrimSpace(line)
 
