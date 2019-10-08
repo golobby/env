@@ -16,13 +16,13 @@ func Load(filename string) (map[string]string, error) {
 	return load(filename, false)
 }
 
-// Load will read the given env file and return its variables as a map, it also load variables into the OS variables.
+// Overload will read the given env file and return its variables as a map, it also load variables into the OS variables.
 // It will overwrite the existing variables in the OS.
 func Overload(filename string) (map[string]string, error) {
 	return load(filename, true)
 }
 
-// Load will read the given env file and return its variables as a map, it also load variables into the OS variables.
+// load will read the given env file and return its variables as a map, it also load variables into the OS variables.
 // The overwrite parameter determine that it should overwrite OS variables or not.
 func load(filename string, overwrite bool) (map[string]string, error) {
 	wd, err := os.Getwd()
