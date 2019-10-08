@@ -4,8 +4,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.svg?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
 
 # Env
-Env is a simple package to read and load environment variable files. 
-It parses env files and returns their key/values as a map. 
+Env is a simple package to read environment variable files and load them to the OS variables. 
+It parses env files and returns their key/values as a `map[string]string`. 
 It also loads or overloads them into the operating system.
 
 ## Documentation
