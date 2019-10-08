@@ -2,6 +2,7 @@ package env_test
 
 import (
 	"env"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -11,6 +12,7 @@ func Test_Load_It_Should_Read_Empty_File(t *testing.T) {
 	vs, err := env.Load("test/.env1")
 	assert.NoErrorf(t, err, "Expected no error got %v", err)
 	assert.Empty(t, vs, "Expected empty env")
+	fmt.Println(vs)
 }
 
 func Test_Load_It_Should_Read_Env_File_And_Load_To_OS(t *testing.T) {
