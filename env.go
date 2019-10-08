@@ -7,72 +7,82 @@ import (
 	"strings"
 )
 
-func New(filename string) (map[string]string, error) {
+func Load(filename string) (map[string]string, error) {
+	return load(filename, false)
+}
+
+func Overload(filename string) (map[string]string, error) {
+	return load(filename, true)
+}
+
+func load(filename string, overwrite bool) (map[string]string, error) {
 	wd, err := os.Getwd()
 	if err != nil {
 		return nil, err
 	}
 
 	path := wd + string(os.PathSeparator) + filename
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
 
-	e := map[string]string{}
-
-	if err := load(path, e); err != nil {
+	variables, err := read(file)
+	if err != nil {
 		return nil, err
 	}
 
-	return e, nil
-}
+	for k, v := range variables {
+		if overwrite == false && os.Getenv(k) != "" {
+			continue
+		}
 
-// load will open a single env file and fill the given env variable
-// It will return error if cannot open the file or parse it
-func load(path string, e map[string]string) error {
-	file, err := os.Open(path)
-	if err != nil {
-		return err
+		if err := os.Setenv(k, v); err != nil {
+			return nil, err
+		}
 	}
 
-	defer file.Close()
+	return variables, nil
+}
 
+func read(file *os.File) (map[string]string, error) {
+	e := map[string]string{}
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		line := scanner.Text()
-
-		if key, value, err := parse(line); err != nil {
-			return err
+		if key, value, err := parse(scanner.Text()); err != nil {
+			return nil, err
 		} else if key != "" {
 			e[key] = value
 		}
 	}
 
 	if err := scanner.Err(); err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return e, nil
 }
 
-// parse will extract key and value from the given line.
-// It will return error if the line is invalid.
 func parse(line string) (string, string, error) {
-	line = strings.TrimSpace(line)
+	ln := strings.TrimSpace(line)
 
-	if len(line) == 0 {
+	if len(ln) == 0 {
 		return "", "", nil
 	}
 
-	if line[0] == '#' {
+	if ln[0] == '#' {
 		return "", "", nil
 	}
 
-	s := strings.Index(line, "=")
+	s := strings.Index(ln, "=")
 	if s == -1 {
-		return "", "", errors.New("Invalid line: " + line)
+		return "", "", errors.New("Invalid ln: " + ln)
 	}
 
-	k := strings.TrimSpace(line[:s])
-	v := strings.TrimSpace(line[s+1:])
+	k := strings.TrimSpace(ln[:s])
+	v := strings.TrimSpace(ln[s+1:])
 
 	return k, v, nil
 }

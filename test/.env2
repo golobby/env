@@ -9,3 +9,4 @@ DB_TYPE = MySQL
   APP_NAME=
 APP_URL=  https://example.com
 DEBUG=true
+NOT_COMMENT=#VALUE!
