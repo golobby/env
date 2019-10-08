@@ -63,6 +63,23 @@ system variables.
 vs, err := env.Overload(".env")
 ```
 
+### Syntax
+This package works with standard syntax of environment variable as explained below.
+
+Example of env file:
+
+```
+# This is comment
+
+APP_NAME=MyGoAPP
+APP_PORT = 8585
+```
+
+Rules:
+* Lines that start with `#` will be ignored.
+* Space around keys and values will be trimmed.
+* Empty lines will be ignored.
+
 ## Contributors
 
 * [@miladrahimi](https://github.com/miladrahimi)
