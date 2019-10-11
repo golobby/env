@@ -1,4 +1,4 @@
-module env
+module github.com/golobby/env
 
 go 1.12
 
