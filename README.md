@@ -1,7 +1,7 @@
 [![GoDoc](https://godoc.org/github.com/golobby/env?status.svg)](https://godoc.org/github.com/golobby/env)
 [![Build Status](https://travis-ci.org/golobby/env.svg?branch=master)](https://travis-ci.org/golobby/env)
 [![Go Report Card](https://goreportcard.com/badge/github.com/golobby/env)](https://goreportcard.com/report/github.com/golobby/env)
-[![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.png?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.svg?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
 
 # Env
 GoLobby Env is a simple package to read environment variable files and load them into the OS variables. 
