@@ -1,4 +1,4 @@
-// Package env is a lightweight package for loading os environment variables into structs in Go projects.
+// Package env is a lightweight package for loading OS environment variables into structs in Go projects.
 package env
 
 import (
