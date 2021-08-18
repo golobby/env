@@ -37,3 +37,22 @@ func TestLoad(t *testing.T) {
 	assert.Equal(t, true, sample.IsAdmin)
 	assert.Equal(t, false, sample.IsUser)
 }
+
+func TestLoad_With_Invalid_Structure_It_Should_Fail(t *testing.T) {
+	var number int
+
+	err := env.Load(&number)
+	assert.Error(t, err, "env: invalid structure")
+}
+
+func TestLoad_With_Invalid_Field_It_Should_Fail(t *testing.T) {
+	type structure struct {
+		Number bool `env:"NUMBER"`
+	}
+
+	_ = os.Setenv("NUMBER", "invalid")
+
+	sample := structure{}
+	err := env.Load(&sample)
+	assert.Error(t, err)
+}
