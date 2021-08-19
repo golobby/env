@@ -39,6 +39,7 @@ jobs:
       run: go test -v ./...
     
     - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      run: >
+       go get -v github.com/mattn/goveralls
+       go build
+       goveralls -v -race -service=github
