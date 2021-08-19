@@ -43,5 +43,5 @@ jobs:
         COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
         go get github.com/mattn/goveralls
-        goveralls -service=github
+        goveralls -service=github -repotoken ${{ secrets.COVERALLS_REPO_TOKEN }}
       
