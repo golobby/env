@@ -21,7 +21,7 @@ type Config struct {
 	IsAdmin bool      `env:"IS_ADMIN"` // A boolean field
 	IsUser  bool      `env:"IS_USER"`  // A boolean field
 	MySQL   *Database // A nested struct pointer
-	Nested  struct { // A nested struct
+	Nested  struct {  // A nested struct
 		Number int32 `env:"NESTED_NUMBER"` // A numeric field
 	}
 }
