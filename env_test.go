@@ -91,11 +91,11 @@ func TestLoad_With_Invalid_Nested_Structure_Field_It_Should_Fail(t *testing.T) {
 	_ = os.Setenv("NESTED_NUMBER", "invalid")
 
 	sample := &Config{}
-	err := env.Load(&sample)
+	err := env.Load(sample)
 	assert.Error(t, err)
 }
 
-func TestLoad_With_Invalid_Structure_Ptr_Field_It_Should_Fail(t *testing.T) {
+func TestLoad_With_Invalid_Nested_Structure_Ptr_Field_It_Should_Fail(t *testing.T) {
 	setDefaults()
 	_ = os.Setenv("DB_PORT", "invalid")
 
