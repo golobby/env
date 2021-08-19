@@ -64,17 +64,17 @@ func TestLoad(t *testing.T) {
 
 func TestLoad_With_Invalid_Structure_It_Should_Fail(t *testing.T) {
 	err := env.Load(nil)
-	assert.Error(t, err, "env: invalid Config")
+	assert.Error(t, err, "env: invalid struct")
 
 	err = env.Load(666)
-	assert.Error(t, err, "env: invalid Config")
+	assert.Error(t, err, "env: invalid struct")
 
 	err = env.Load(struct{}{})
-	assert.Error(t, err, "env: invalid Config")
+	assert.Error(t, err, "env: invalid struct")
 
 	var pointer bool
 	err = env.Load(&pointer)
-	assert.Error(t, err, "env: invalid Config")
+	assert.Error(t, err, "env: invalid struct")
 }
 
 func TestLoad_With_Invalid_Field_It_Should_Fail(t *testing.T) {
