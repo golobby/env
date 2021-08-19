@@ -37,11 +37,9 @@ type Config struct {
 }
 
 c := Config{}
-
 err := env.Load(&c)
-if err != nil {
-    panic(err)
-}
+
+// Use `c` struct in your app!
 ```
 
 ## See Also
