@@ -42,7 +42,6 @@ jobs:
       env:
         COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
-        go mod download -modfile=go.tools.mod github.com/mattn/goveralls
-        go install -modfile=go.tools.mod github.com/mattn/goveralls
-        goveralls -service=github -repotoken ${{ secrets.COVERALLS_REPO_TOKEN }}
+        go get -u github.com/mattn/goveralls
+        goveralls -service=github
       
