@@ -23,7 +23,7 @@ func Load(structure interface{}) error {
 		}
 	}
 
-	return errors.New("env: invalid Config")
+	return errors.New("env: invalid structure")
 }
 
 // loadStruct retrieves OS environment variables into the given struct reflected value.
