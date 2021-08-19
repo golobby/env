@@ -12,7 +12,7 @@ import (
 // Load retrieves OS environment variables into the given struct.
 // It gets the pointer of a struct that is going to holds the variables.
 // The struct fields must have an `env` tag that determines the related OS environment variable.
-// Field example: IsAdmin bool `env:"IS_ADMIN"`
+// Tag example: `env:"APP_NAME"`
 func Load(structure interface{}) error {
 	inputType := reflect.TypeOf(structure)
 	if inputType != nil {
@@ -26,6 +26,7 @@ func Load(structure interface{}) error {
 	return errors.New("env: invalid Config")
 }
 
+// loadStruct retrieves OS environment variables into the given struct reflected value.
 func loadStruct(s reflect.Value) error {
 	for i := 0; i < s.NumField(); i++ {
 		if t, exist := s.Type().Field(i).Tag.Lookup("env"); exist {
