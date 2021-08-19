@@ -42,8 +42,6 @@ jobs:
       env:
         COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        go get golang.org/x/tools/cmd/cover
         go get github.com/mattn/goveralls
-        go test -v -covermode=count -coverprofile=coverage.out
-        goveralls -coverprofile=coverage.out -service=github
+        goveralls -service=github
       
