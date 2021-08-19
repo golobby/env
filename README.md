@@ -6,7 +6,7 @@
 
 # Env
 
-GoLobby Env is a lightweight package for loading OS environment variables into structs in Go projects.
+GoLobby Env is a lightweight package for loading OS environment variables into structs for Go projects.
 
 ## Documentation
 ### Supported Versions
@@ -43,6 +43,9 @@ if err != nil {
     panic(err)
 }
 ```
+
+## See Also
+* ***[golobby/dotenv](https://github.com/golobby/dotenv)**: A lightweight package for loading dot env (.env) files into structs for Go projects*
 
 ## License
 GoLobby Env is released under the [MIT License](http://opensource.org/licenses/mit-license.php).
