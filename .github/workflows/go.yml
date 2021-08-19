@@ -39,4 +39,4 @@ jobs:
       run: go test -v ./...
     
     - name: Coveralls
-      run: go get -v github.com/mattn/goveralls && go build && goveralls -v -race -service=github
+      run: go get -v github.com/mattn/goveralls && go build && goveralls -v -race -service=github -repotoken=${{ COVERALLS_REPO_TOKEN }}
