@@ -45,8 +45,8 @@ if err != nil {
 ```
 
 ## See Also
-* ***[golobby/config](https://github.com/golobby/config)**: A lightweight yet powerful config package for Go projects*
-* ***[golobby/dotenv](https://github.com/golobby/dotenv)**: A lightweight package for loading dot env (.env) files into structs for Go projects*
+* ***[GoLobby/Config](https://github.com/golobby/config)**: A lightweight yet powerful config package for Go projects*
+* ***[GoLobby/DotEnv](https://github.com/golobby/dotenv)**: A lightweight package for loading dot env (.env) files into structs for Go projects*
 
 ## License
 GoLobby Env is released under the [MIT License](http://opensource.org/licenses/mit-license.php).
