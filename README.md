@@ -36,7 +36,7 @@ type Config struct {
     }
 }
 
-c := &Config{}
+c := Config{}
 
 err := env.Load(&c)
 if err != nil {
