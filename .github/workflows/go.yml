@@ -39,4 +39,9 @@ jobs:
       run: go test -v ./...
     
     - name: Coveralls
-      run: go get -v github.com/mattn/goveralls && go build && goveralls -v -race -service=github -repotoken 'XNGknMseabiL9JXpHQY1VIpi0NQlJcMNs'
+      env:
+        COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      run: |
+        go install -modfile=go.tools.mod github.com/mattn/goveralls
+        goveralls -service=github
+      
