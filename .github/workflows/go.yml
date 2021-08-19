@@ -40,8 +40,8 @@ jobs:
     
     - name: Coveralls
       env:
-        COVERALLS_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         go get github.com/mattn/goveralls
-        goveralls -service=github -repotoken ${{ secrets.COVERALLS_REPO_TOKEN }}
+        goveralls -service=github
       
