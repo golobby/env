@@ -23,9 +23,17 @@ The following example demonstrates how to use GoLobby Env package.
 
 ```go
 type Config struct {
-    AppName string  `env:"APP_NAME"`
-    AppPort int64   `env:"APP_PORT"`
-    IsAdmin bool    `env:"IS_ADMIN"`
+    Debug bool  `env:"DEBUG"`
+    App struct {
+		Name string `env:"APP_NAME"`
+        Port int16  `env:"APP_PORT"`
+	}
+    Database struct {
+		Name string `env:"DB_NAME"`
+        Port int16  `env:"DB_PORT"`
+        User string `env:"DB_USER"`
+        Pass string `env:"DB_PASS"`
+	}
 }
 
 c := &Config{}
