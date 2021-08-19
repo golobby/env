@@ -1,5 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/golobby/env/v2?status.svg)](https://godoc.org/github.com/golobby/env/v2)
-[![Build Status](https://github.com/golobby/env/actions/workflows/go.yml/badge.svg)](https://github.com/golobby/env/actions/workflows/go.yml)
+[![CI](https://github.com/golobby/env/actions/workflows/ci.yml/badge.svg)](https://github.com/golobby/env/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/golobby/cast/workflows/CodeQL/badge.svg)](https://github.com/golobby/cast/actions?query=workflow%3ACodeQL)
 [![Go Report Card](https://goreportcard.com/badge/github.com/golobby/env)](https://goreportcard.com/report/github.com/golobby/env)
 [![Coverage Status](https://coveralls.io/repos/github/golobby/env/badge.svg?branch=master)](https://coveralls.io/github/golobby/env?branch=master)
