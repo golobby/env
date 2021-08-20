@@ -40,13 +40,13 @@ func setDefaults() {
 	_ = os.Setenv("DB_PORT", "666")
 }
 
-func TestLoad(t *testing.T) {
+func TestFeed(t *testing.T) {
 	setDefaults()
 
 	sample := Config{}
 	sample.MySQL = &Database{}
 
-	err := env.Load(&sample)
+	err := env.Feed(&sample)
 	assert.NoError(t, err)
 
 	assert.Equal(t, "Milad", sample.Name)
@@ -62,57 +62,57 @@ func TestLoad(t *testing.T) {
 	assert.Equal(t, int16(666), sample.MySQL.Port)
 }
 
-func TestLoad_With_Default_Values(t *testing.T) {
+func TestFeed_With_Default_Values(t *testing.T) {
 	_ = os.Setenv("DB_NAME", "mysql")
 	_ = os.Setenv("DB_PORT", "")
 
 	sample := Database{}
 	sample.Port = 666
 
-	err := env.Load(&sample)
+	err := env.Feed(&sample)
 	assert.NoError(t, err)
 
 	assert.Equal(t, "mysql", sample.Name)
 	assert.Equal(t, int16(666), sample.Port)
 }
 
-func TestLoad_With_Invalid_Structure_It_Should_Fail(t *testing.T) {
-	err := env.Load(nil)
+func TestFeed_With_Invalid_Structure_It_Should_Fail(t *testing.T) {
+	err := env.Feed(nil)
 	assert.Error(t, err, "env: invalid struct")
 
-	err = env.Load(666)
+	err = env.Feed(666)
 	assert.Error(t, err, "env: invalid struct")
 
-	err = env.Load(struct{}{})
+	err = env.Feed(struct{}{})
 	assert.Error(t, err, "env: invalid struct")
 
 	var pointer bool
-	err = env.Load(&pointer)
+	err = env.Feed(&pointer)
 	assert.Error(t, err, "env: invalid struct")
 }
 
-func TestLoad_With_Invalid_Field_It_Should_Fail(t *testing.T) {
+func TestFeed_With_Invalid_Field_It_Should_Fail(t *testing.T) {
 	_ = os.Setenv("DB_PORT", "invalid")
 
 	sample := Database{}
-	err := env.Load(&sample)
+	err := env.Feed(&sample)
 	assert.Error(t, err)
 }
 
-func TestLoad_With_Invalid_Nested_Structure_Field_It_Should_Fail(t *testing.T) {
+func TestFeed_With_Invalid_Nested_Structure_Field_It_Should_Fail(t *testing.T) {
 	_ = os.Setenv("NESTED_NUMBER", "invalid")
 
 	sample := &Config{}
-	err := env.Load(sample)
+	err := env.Feed(sample)
 	assert.Error(t, err)
 }
 
-func TestLoad_With_Invalid_Nested_Structure_Ptr_Field_It_Should_Fail(t *testing.T) {
+func TestFeed_With_Invalid_Nested_Structure_Ptr_Field_It_Should_Fail(t *testing.T) {
 	_ = os.Setenv("DB_PORT", "invalid")
 
 	sample := Config{}
 	sample.MySQL = &Database{}
 
-	err := env.Load(&sample)
+	err := env.Feed(&sample)
 	assert.Error(t, err)
 }
