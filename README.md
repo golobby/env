@@ -42,6 +42,17 @@ err := env.Load(&c)
 // Use `c` struct in your app!
 ```
 
+### Usage Tips
+* The `Load()` function gets a pointer of a struct.
+* It ignores empty OS environment variables.
+* It supports nested structs and struct pointers.
+
+### Field Types
+GoLobby Env uses the [GoLobby Cast](https://github.com/golobby/cast) package to cast OS environment variables to related struct field types.
+Here you can see the supported types:
+
+https://github.com/golobby/cast#supported-types
+
 ## See Also
 * [GoLobby/Config](https://github.com/golobby/config): A lightweight yet powerful config package for Go projects
 * [GoLobby/DotEnv](https://github.com/golobby/dotenv): A lightweight package for loading dot env (.env) files into structs for Go projects
