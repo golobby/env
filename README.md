@@ -36,14 +36,14 @@ type Config struct {
     }
 }
 
-c := Config{}
-err := env.Load(&c)
+config := Config{}
+err := env.Feed(&config)
 
-// Use `c` struct in your app!
+// Use `config` struct in your app!
 ```
 
 ### Usage Tips
-* The `Load()` function gets a pointer of a struct.
+* The `Feed()` function gets a pointer of a struct.
 * It ignores empty OS environment variables.
 * It supports nested structs and struct pointers.
 
