@@ -43,7 +43,7 @@ err := env.Load(&c)
 ```
 
 ### Usage Tips
-* The `Load` function gets a pointer of a struct.
+* The `Load()` function gets a pointer of a struct.
 * It ignores empty OS environment variables.
 * It supports nested structs and struct pointers.
 
