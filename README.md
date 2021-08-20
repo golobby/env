@@ -54,7 +54,7 @@ Here you can see the supported types:
 https://github.com/golobby/cast#supported-types
 
 ## See Also
-* [GoLobby/Config](https://github.com/golobby/config): A lightweight yet powerful config package for Go projects
+* [GoLobby/Config](https://github.com/golobby/config): A lightweight yet powerful configuration management for Go projects
 * [GoLobby/DotEnv](https://github.com/golobby/dotenv): A lightweight package for loading dot env (.env) files into structs for Go projects
 
 ## License
