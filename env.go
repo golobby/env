@@ -1,4 +1,4 @@
-// Package env is a lightweight package for loading OS environment variables into structs.
+// Package env is a lightweight library for loading OS environment variables into structs.
 package env
 
 import (
@@ -31,13 +31,15 @@ func Load(structure interface{}) error {
 func fillStruct(s reflect.Value) error {
 	for i := 0; i < s.NumField(); i++ {
 		if t, exist := s.Type().Field(i).Tag.Lookup("env"); exist {
-			v, err := cast.FromString(os.Getenv(t), s.Type().Field(i).Type.Name())
-			if err != nil {
-				return fmt.Errorf("env: cannot set `%v` field; err: %v", s.Type().Field(i).Name, err)
-			}
+			if osv := os.Getenv(t); osv != "" {
+				v, err := cast.FromString(osv, s.Type().Field(i).Type.Name())
+				if err != nil {
+					return fmt.Errorf("env: cannot set `%v` field; err: %v", s.Type().Field(i).Name, err)
+				}
 
-			ptr := reflect.NewAt(s.Field(i).Type(), unsafe.Pointer(s.Field(i).UnsafeAddr())).Elem()
-			ptr.Set(reflect.ValueOf(v))
+				ptr := reflect.NewAt(s.Field(i).Type(), unsafe.Pointer(s.Field(i).UnsafeAddr())).Elem()
+				ptr.Set(reflect.ValueOf(v))
+			}
 		} else if s.Type().Field(i).Type.Kind() == reflect.Struct {
 			if err := fillStruct(s.Field(i)); err != nil {
 				return err
