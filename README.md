@@ -36,14 +36,14 @@ type Config struct {
     }
 }
 
-c := Config{}
-err := env.Load(&c)
+config := Config{}
+err := env.Feed(&config)
 
-// Use `c` struct in your app!
+// Use `config` struct in your app!
 ```
 
 ### Usage Tips
-* The `Load()` function gets a pointer of a struct.
+* The `Feed()` function gets a pointer of a struct.
 * It ignores empty OS environment variables.
 * It supports nested structs and struct pointers.
 
@@ -54,7 +54,7 @@ Here you can see the supported types:
 https://github.com/golobby/cast#supported-types
 
 ## See Also
-* [GoLobby/Config](https://github.com/golobby/config): A lightweight yet powerful config package for Go projects
+* [GoLobby/Config](https://github.com/golobby/config): A lightweight yet powerful configuration management for Go projects
 * [GoLobby/DotEnv](https://github.com/golobby/dotenv): A lightweight package for loading dot env (.env) files into structs for Go projects
 
 ## License
