@@ -32,7 +32,7 @@ func fillStruct(s reflect.Value) error {
 	for i := 0; i < s.NumField(); i++ {
 		if t, exist := s.Type().Field(i).Tag.Lookup("env"); exist {
 			if osv := os.Getenv(t); osv != "" {
-				v, err := cast.FromString(osv, s.Type().Field(i).Type.Name())
+				v, err := cast.FromType(osv, s.Type().Field(i).Type)
 				if err != nil {
 					return fmt.Errorf("env: cannot set `%v` field; err: %v", s.Type().Field(i).Name, err)
 				}

@@ -20,6 +20,8 @@ type Config struct {
 	Pi      float32   `env:"PI"`       // A float field
 	IsAdmin bool      `env:"IS_ADMIN"` // A boolean field
 	IsUser  bool      `env:"IS_USER"`  // A boolean field
+	IPs     []string  `env:"IPS"`      // A []string field
+	Nums    []int8    `env:"NUMS"`     // A []int8 field
 	MySQL   *Database // A nested struct pointer
 	Nested  struct {  // A nested struct
 		Number int32 `env:"NESTED_NUMBER"` // A numeric field
@@ -33,6 +35,8 @@ func setDefaults() {
 	_ = os.Setenv("PI", "3.14")
 	_ = os.Setenv("IS_ADMIN", "1")
 	_ = os.Setenv("IS_USER", "false")
+	_ = os.Setenv("IPS", "192.168.0.1, 192.168.0.2")
+	_ = os.Setenv("NUMS", "10, 11, 12 , 13")
 
 	_ = os.Setenv("NESTED_NUMBER", "33")
 
@@ -55,6 +59,8 @@ func TestFeed(t *testing.T) {
 	assert.Equal(t, float32(3.14), sample.Pi)
 	assert.Equal(t, true, sample.IsAdmin)
 	assert.Equal(t, false, sample.IsUser)
+	assert.Equal(t, []string{"192.168.0.1", "192.168.0.2"}, sample.IPs)
+	assert.Equal(t, []int8{10, 11, 12, 13}, sample.Nums)
 
 	assert.Equal(t, int32(33), sample.Nested.Number)
 
