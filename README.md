@@ -10,7 +10,7 @@ GoLobby Env is a lightweight package for loading OS environment variables into s
 
 ## Documentation
 ### Supported Versions
-It requires Go `v1.11` or newer versions.
+It requires Go `v1.16` or newer versions.
 
 ### Installation
 To install this package run the following command in the root of your project
